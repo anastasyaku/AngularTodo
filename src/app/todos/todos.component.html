@@ -1,0 +1,6 @@
+<div *ngFor="let t of todoS.todos;">
+  <input type="checkbox" [checked]="t.complete" (click)="completeTask(t.id)">
+  <strong> {{t.id}}  </strong> <span [class.done]="t.complete">  <em> {{t.text}}</em></span>
+  <span> {{t.date | date : 'mediumDate'}}</span>
+  <button>&times; </button>
+</div>
