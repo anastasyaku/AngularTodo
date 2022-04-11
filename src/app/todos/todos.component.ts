@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {TodoServiceService} from '../shared/todo-service.service';
 
 
-
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -10,15 +9,30 @@ import {TodoServiceService} from '../shared/todo-service.service';
 })
 export class TodosComponent implements OnInit {
 
+  public flagLoad = true;
+
   constructor(public todoS: TodoServiceService) {
 
   }
 
-////kzkzkz
-  ngOnInit(): void {  }
+
+  ngOnInit(): void {
+    this.todoS.fetchTodo().subscribe(() => {
+      this.flagLoad = false;
+
+    });
+
+  }
+
   // tslint:disable-next-line:typedef
-  completeTask(id: number){
+  completeTask(id: number) {
     // this.onChange.emit(id);
+    this.todoS.Complete(id);
+  }
+
+  // tslint:disable-next-line:typedef
+  removeTask(id: number) {
+    this.todoS.Remove(id);
   }
 
 }

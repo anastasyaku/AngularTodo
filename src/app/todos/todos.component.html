@@ -1,6 +1,30 @@
-<div *ngFor="let t of todoS.todos;">
-  <input type="checkbox" [checked]="t.complete" (click)="completeTask(t.id)">
-  <strong> {{t.id}}  </strong> <span [class.done]="t.complete">  <em> {{t.text}}</em></span>
-  <span> {{t.date | date : 'mediumDate'}}</span>
-  <button>&times; </button>
+<div *ngIf="flagLoad==false">
+
+  <div class="container" *ngIf="todoS.todos.length; else NoTask">
+    <div class="main-content">
+      <header> <h1> Todo list </h1></header>
+
+      <div class="list">
+        <div class="listItem" *ngFor="let t of todoS.todos;">
+          <span  class="check"> <input type="checkbox" [checked]="t.complete" (click)="completeTask(t.id)"> </span>
+          <span class="listItemText">
+            <strong> {{t.id}}  </strong> <span [class.done]="t.complete">  <em> {{t.title}}</em></span> <span> {{t.date | date : 'mediumDate'}}</span>
+            <span #btn> <button class="button" (click)="removeTask(t.id)">&times; </button> </span>
+          </span>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+<ng-template #NoTask>
+  <span style="text-align: center"> No tasks </span>
+</ng-template>
 </div>
+
+<span *ngIf="flagLoad"> Loading ... </span>
