@@ -44,4 +44,10 @@ export class TodoServiceService {
 
   }
 
+
+  Add(todo: Todo){
+    this.todos.push(todo);
+
+  }
+
 }

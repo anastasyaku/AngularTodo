@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoServiceService} from '../shared/todo-service.service';
+import {delay} from 'rxjs/operators';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class TodosComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.todoS.fetchTodo().subscribe(() => {
+    this.todoS.fetchTodo().pipe(delay(1000)).subscribe(() => {
       this.flagLoad = false;
 
     });
